@@ -1,0 +1,88 @@
+TebLocalPlannerROS:
+  odom_topic: odom
+  map_frame: /map
+
+  acc_lim_x: 1.4 #1.5135 2.5 3.2 0.8 1.0 1.2
+  acc_lim_y: 1.0
+  acc_lim_theta: 2.27 #2.07 4.5 3.65 5.89 1.92 2.12* or 2.32* 3.42 3.67yyy 4.67
+  max_vel_x: 9.642 # 0.6642 #0.5472 1.1 0.8 0.3172 0.3572bucuo 0.3972yebucuo 0.4172 0.4372 0.7442y
+  max_vel_y: 8.2 #0.22 #0.3 0.1 0.2 0.25*
+  max_vel_x_backwards: 0.1 #1.1
+  max_vel_theta: 9.7 # 1.7 #2.75 0.5 0.75 0.801.53y latest:1.68  10.7
+  min_turning_radius: 0.0 #0.01 0.1
+  is_footprint_dynamic: true #false
+  footprint_model:
+    type: "line" #"polygon"
+    line_start: [-0.168,0]
+    line_end: [0.168,0]
+#vertices:[[0.171, -0.10], [0.171, 0.10],[-0.171, 0.10], [-0.171, -0.10]] 
+    #[[0.171, -0.128], [0.171, 0.128],[-0.171, 0.128], [-0.171, -0.128]]
+
+  yaw_goal_tolerance: 0.5 #0.2 newest:0.1
+  xy_goal_tolerance: 0.1 #0.1 newest:0.5
+  free_goal_vel: true #false
+  complete_global_plan: false # true
+  dt_ref: 0.2 #0.3 latest:0.2
+  dt_hysteresis: 0.02 #0.1 0.03 0.1 latest:0.02
+  min_samples: 3
+  global_plan_overwrite_orientation: true  #false(good start but lack rotation)
+  global_plan_viapoint_sep: 0.11  #-0.1
+  max_global_plan_lookahead_dist: 0.9 #2.2* 1.5** latest:0.555
+  force_reinit_new_goal_dist: 0.1 #0.20
+  feasibility_check_no_poses: 0.5  #2
+  publish_feedback: false
+  allow_init_with_backwards_motion: false
+  exact_arc_length: false
+  shrink_horizon_backup: true
+  shrink_horizon_min_duration: 10.0
+
+  min_obstacle_dist: 0.20  #0.15 0.01 latest:0.11*
+  include_costmap_obstacles: true
+  costmap_obstacles_behind_robot_dist: 1.0
+  inflation_dist: 0.5 #0.6
+  include_dynamic_obstacles: true #false
+  legacy_obstacle_association: false
+  obstacle_association_force_inclusion_factor: 1.5 #1.5
+  obstacle_association_cutoff_factor: 5
+  costmap_converter_plugin: ""
+  costmap_converter_spin_thread: true
+  costmap_converter_rate: 3.5 #5.0 3.5*(?)
+
+  no_inner_iterations: 5 #5
+  no_outer_iterations: 4 #4
+  penalty_epsilon: 0.05 #0.11 0.09 0.05*
+  weight_acc_lim_x: 3.1623 #1.0
+  weight_acc_lim_y: 1.0
+  weight_acc_lim_theta: 10.0 #1.0 1.4 5.0 10.0*
+  weight_max_vel_x: 1.0 #2.0
+  weight_max_vel_y: 1.0 #10.0 
+  weight_max_vel_theta: 100.0 #1.0 1000.0
+  weight_kinematics_nh: 1.0 #1000.0
+  weight_kinematics_forward_drive: 1000.0
+  weight_kinematics_turning_radius: 1.0 #1.0 15.0 100.0
+  weight_optimaltime: 4.5  #525.8 1.0 52.3  26.19 8.12 4.12 6.12*
+  weight_obstacle: 50 #100.0 90.9
+  weight_viapoint: 10.0 #1.0 800
+  weight_inflation: 0.8 #0.1 0.8*
+  weight_adapt_factor: 2.2
+
+  enable_homotopy_class_planning: false  # true
+  enable_multithreading: false
+  max_number_classes: 4
+  selection_cost_hysteresis: 1.0
+  selection_obst_cost_scale: 100.0
+  selection_viapoint_cost_scale: 1.0
+  selection_alternative_time_cost: false
+  roadmap_graph_no_samples: 6 #15
+  roadmap_graph_area_width: 5
+  h_signature_prescaler: 1.0
+  h_signature_threshold: 0.1
+  obstacle_heading_threshold: 0.45
+  visualize_hc_graph: false
+  viapoints_all_candidates: true
+  switching_blocking_period: 0.0
+  
+  detours_orientation_tolerance : M_PI / 1.0
+  delete_detours_backwards : false
+  length_start_orientation_vector : 0.8
+  max_ratio_detours_duration_best_duration : 0.5
